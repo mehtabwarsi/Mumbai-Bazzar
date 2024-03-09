@@ -6,7 +6,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const Profile = () => {
   return (
     <View style={styles.container}>
-      <Text>Profile</Text>
+      <Text style={styles.textStyle}>Profile</Text>
     </View>
   );
 };
@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+  },
+  textStyle: {
+    color: 'black',
   },
 });
 

@@ -9,18 +9,28 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Image,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   horizontalScale,
   moderateScale,
   verticalScale,
 } from '../../utill/responsive/metrices';
+import {Color} from '../../utill/color';
 
 // create a component
 const SignIn = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.container}>
+        <View style={styles.ImageStyle}>
+          <Image
+            style={styles.ImageDime}
+            source={require('../../Image/user4x.png')}
+            // resizeMode="cover"
+          />
+        </View>
         <View style={styles.TextArea}>
           <Text style={styles.titleText}>Welcome</Text>
           <Text style={styles.smallText}>
@@ -29,26 +39,34 @@ const SignIn = () => {
           </Text>
         </View>
         <KeyboardAvoidingView
-          style={{ flex: 1 }}
+          style={{flex: 1}}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={1000}>
           <View>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Enter your Name"
-              placeholderTextColor={'grey'}
-            />
-
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Enter your Mobile number"
-              placeholderTextColor={'grey'}
-              keyboardType='numeric'
-            />
+            <View style={styles.TextInput}>
+              <Icon name="email" color={Color.primayColor} size={22} />
+              <TextInput
+                // style={styles.TextInput}
+                placeholder="Enter your Name"
+                placeholderTextColor={'grey'}
+                style={styles.inputTextColor}
+              />
+            </View>
+            <View style={styles.TextInput}>
+              <Icon name="lock" color={Color.primayColor} size={22} />
+              <TextInput
+                placeholder="Enter your Mobile number"
+                placeholderTextColor={'grey'}
+                keyboardType="numeric"
+                style={styles.inputTextColor}
+              />
+            </View>
           </View>
         </KeyboardAvoidingView>
         <View>
-          <TouchableOpacity style={styles.PrimaryButton}>
+          <TouchableOpacity
+            style={styles.PrimaryButton}
+            onPress={() => console.log('hello')}>
             <Text style={styles.PrimmaryButtonText}>Continue</Text>
           </TouchableOpacity>
         </View>
@@ -73,7 +91,7 @@ const styles = StyleSheet.create({
     color: '#2D2D2D',
   },
   TextArea: {
-    marginTop: verticalScale(420),
+    marginTop: verticalScale(14),
     marginHorizontal: horizontalScale(20),
   },
   TextInput: {
@@ -82,27 +100,42 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 2,
     elevation: 1.4,
-    color: 'black',
     marginHorizontal: horizontalScale(20),
     borderRadius: 7,
+    flexDirection: 'row',
+    // justifyContent:'center',
+    alignItems: 'center',
+    paddingLeft: 6,
   },
   PrimaryButton: {
-    backgroundColor: '#F7A399',
-    width: horizontalScale(187),
-    height: verticalScale(37),
+    backgroundColor: Color.primayColor,
+    width: horizontalScale(250),
+    height: verticalScale(50),
     marginTop: verticalScale(26),
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
     elevation: 1,
-    shadowColor: '#F7A399',
+    shadowColor: Color.primayColor,
     shadowOpacity: 5,
   },
   PrimmaryButtonText: {
     color: 'white',
-    fontSize: 12,
+    fontSize: 18,
     fontWeight: 'bold',
+  },
+  ImageStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: verticalScale(45),
+  },
+  ImageDime: {
+    height: verticalScale(350),
+    width: horizontalScale(350),
+  },
+  inputTextColor: {
+    color: 'black',
   },
 });
 

@@ -6,7 +6,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text style={styles.textStyle}>Home</Text>
     </View>
   );
 };
@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
+  textStyle:{
+    color:'black'
+  }
 });
 
 //make this component available to the app

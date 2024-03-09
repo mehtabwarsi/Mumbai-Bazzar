@@ -6,7 +6,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const Cart = () => {
   return (
     <View style={styles.container}>
-      <Text>Cart</Text>
+      <Text style={styles.textStyle}>Cart</Text>
     </View>
   );
 };
@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
+  textStyle:{
+    color:'black'
+  }
 });
 
 //make this component available to the app

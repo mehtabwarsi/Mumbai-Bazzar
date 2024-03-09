@@ -1,7 +1,8 @@
 //import liraries
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Tab screens
 import Home from '../Screens/Tab_Navigators/Home';
 import Cart from '../Screens/Tab_Navigators/Cart';
@@ -14,26 +15,48 @@ const TabNaviagtion = () => {
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: '#F7A399',
+        }}
+      >
         <Tab.Screen
           name="Home"
           component={Home}
-          options={{headerShown: false}}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="home" color={color} size={size} />
+            ),
+          }}
         />
         <Tab.Screen
           name="Cart"
           component={Cart}
-          options={{headerShown: false}}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="cart" color={color} size={size} />
+            ),
+          }}
         />
         <Tab.Screen
           name="Notifiction"
           component={Notification}
-          options={{headerShown: false}}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="bell" color={color} size={size} />
+            ),
+          }}
         />
         <Tab.Screen
           name="Profile"
           component={Profile}
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="account-circle" color={color} size={size} />
+            ),
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
