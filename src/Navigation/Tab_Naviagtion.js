@@ -1,7 +1,7 @@
 //import liraries
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Tab screens
 import Home from '../Screens/Tab_Navigators/Home';
@@ -19,13 +19,13 @@ const TabNaviagtion = () => {
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: '#F7A399',
-        }}
-      >
+          tabBarHideOnKeyboard: true,
+        }}>
         <Tab.Screen
           name="Home"
           component={Home}
           options={{
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="home" color={color} size={size} />
             ),
           }}
@@ -34,7 +34,7 @@ const TabNaviagtion = () => {
           name="Cart"
           component={Cart}
           options={{
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="cart" color={color} size={size} />
             ),
           }}
@@ -43,7 +43,7 @@ const TabNaviagtion = () => {
           name="Notifiction"
           component={Notification}
           options={{
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="bell" color={color} size={size} />
             ),
           }}
@@ -53,7 +53,7 @@ const TabNaviagtion = () => {
           component={Profile}
           options={{
             headerShown: false,
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="account-circle" color={color} size={size} />
             ),
           }}

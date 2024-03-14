@@ -12,12 +12,12 @@ import {
   Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Color} from '../../utill/color';
 import {
+  verticalScale,
   horizontalScale,
   moderateScale,
-  verticalScale,
-} from '../../utill/responsive/metrices';
-import {Color} from '../../utill/color';
+} from '../../utill/metrices';
 
 // create a component
 const SignIn = () => {
@@ -28,7 +28,7 @@ const SignIn = () => {
           <Image
             style={styles.ImageDime}
             source={require('../../Image/user4x.png')}
-            // resizeMode="cover"
+            resizeMode="cover"
           />
         </View>
         <View style={styles.TextArea}>
