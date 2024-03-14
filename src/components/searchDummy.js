@@ -2,7 +2,7 @@
 import React from 'react';
 import {View, TextInput, StyleSheet,TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {verticalScale, horizontalScale} from '../utill/responsive/metrices';
+import { verticalScale,horizontalScale } from '../utill/metrices';
 // import {Color} from '../utill/color';
 
 // create a component
