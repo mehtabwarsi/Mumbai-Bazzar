@@ -1,13 +1,14 @@
 //import liraries
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, FlatList, Dimensions, Image} from 'react-native';
+import ItemShowList from '../../components/itemShow';
 
 // create a component
 const Home = ({navigation}) => {
   const [products, setProducts] = useState([]);
   console.log(products);
   const getProduct = () => {
-    fetch('ttps://fakestoreapi.com/products')
+    fetch('https://fakestoreapi.com/products')
       .then(res => res.json())
       .then(json => setProducts(json));
   };
@@ -21,9 +22,13 @@ const Home = ({navigation}) => {
         numColumns={2}
         renderItem={({item, index}) => {
           return (
-            <View style={styles.productItem} key={index}>
-              <Image source={{uri: item.image}} style={styles.ImageStyle} />
-            </View>
+            <ItemShowList
+              image={item.image}
+              count={item.rating.count}
+              price={item.price}
+              rating={item.rating.rate}
+              title={item.title}
+            />
           );
         }}
       />
