@@ -29,6 +29,7 @@ const TabNaviagtion = () => {
               <Icon name="home" color={color} size={size} />
             ),
           }}
+
         />
         <Tab.Screen
           name="Cart"

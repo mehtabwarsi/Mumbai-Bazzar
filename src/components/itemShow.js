@@ -23,8 +23,8 @@ const ItemShowList = ({image, rating, count, title, price}) => {
       </View>
       {/* end this line */}
       <View style={styles.titleTextAera}>
-        <Text style={styles.textStyle}>{title}</Text>
-        <Text style={styles.textStyle}>{price}</Text>
+        <Text style={styles.textStyle}>{title.substring(0, 11)}</Text>
+        <Text style={styles.textStyle}>${price}</Text>
       </View>
     </View>
   );
@@ -33,8 +33,12 @@ const ItemShowList = ({image, rating, count, title, price}) => {
 // define your styles
 const styles = StyleSheet.create({
   rootContainer: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: 'white',
+    padding:1,
+    elevation:5,
+    shadowColor:'black',
+    shadowOpacity:0.2
   },
   imageStyle: {
     height: verticalScale(250),
@@ -42,11 +46,11 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    shadowColor:'black',
+   
   },
   RatingText: {
     position: 'absolute',
-    marginTop: verticalScale(270),
+    marginTop: verticalScale(200),
     backgroundColor: 'yellow',
     borderRadius: 30,
     flexDirection: 'row',
@@ -56,13 +60,13 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   titleTextAera: {
-    
-    marginTop: verticalScale(5),
+    marginTop: verticalScale(15),
+    padding:2
   },
   textStyle: {
     color: 'black',
   },
-})
+});
 
 //make this component available to the app
 export default ItemShowList;

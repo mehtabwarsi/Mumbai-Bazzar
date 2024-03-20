@@ -1,7 +1,16 @@
 //import liraries
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, FlatList, Dimensions, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Dimensions,
+  Image,
+  ScrollView,
+} from 'react-native';
 import ItemShowList from '../../components/itemShow';
+import Header from '../../components/header';
+import SearchCOmponenet from '../../components/searchComponet';
 
 // create a component
 const Home = ({navigation}) => {
@@ -17,9 +26,13 @@ const Home = ({navigation}) => {
   }, []);
   return (
     <View style={styles.container}>
+      {/* <Header /> */}
       <FlatList
         data={products}
+        stickyHeaderIndices={[0]}
         numColumns={2}
+        ListHeaderComponent={<Header />}
+        ListHeaderComponentStyle={<Header />}
         renderItem={({item, index}) => {
           return (
             <ItemShowList
