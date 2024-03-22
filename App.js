@@ -13,9 +13,14 @@ import SignUp from './src/Screens/Auth_Screens/signup';
 import SearchCOmponenet from './src/components/searchComponet';
 import SearchDummy from './src/components/searchDummy';
 import ItemShowList from './src/components/itemShow';
-import ProductShow from './src/components/productShow';
+import {NavigationContainer} from '@react-navigation/native';
+import StackNaviagtion from './src/Navigation/Stack_NAviagtion';
 function App() {
-  return <TabNaviagtion />;
+  return (
+    <NavigationContainer>
+      <StackNaviagtion />
+    </NavigationContainer>
+  );
 }
 
 export default App;

@@ -7,6 +7,7 @@ import {
   Dimensions,
   Image,
   ScrollView,
+  Button,
 } from 'react-native';
 import ItemShowList from '../../components/itemShow';
 import Header from '../../components/header';
@@ -45,6 +46,7 @@ const Home = ({navigation}) => {
           );
         }}
       />
+      <Button title="move on" onPress={() => navigation.navigate('Product')} />
     </View>
   );
 };

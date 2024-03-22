@@ -8,18 +8,20 @@ import Home from '../Screens/Tab_Navigators/Home';
 import Cart from '../Screens/Tab_Navigators/Cart';
 import Notification from '../Screens/Tab_Navigators/Notification';
 import Profile from '../Screens/Tab_Navigators/Profile';
+// stack
+import StackNaviagtion from './Stack_NAviagtion';
 
 // create a component
 
 const TabNaviagtion = () => {
   const Tab = createBottomTabNavigator();
   return (
-    <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: '#F7A399',
           tabBarHideOnKeyboard: true,
+          // initialRouteName: 'Home',
         }}>
         <Tab.Screen
           name="Home"
@@ -29,7 +31,6 @@ const TabNaviagtion = () => {
               <Icon name="home" color={color} size={size} />
             ),
           }}
-
         />
         <Tab.Screen
           name="Cart"
@@ -60,7 +61,6 @@ const TabNaviagtion = () => {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 };
 
