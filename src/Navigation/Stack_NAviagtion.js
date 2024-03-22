@@ -1,22 +1,23 @@
 //import liraries
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // import Home from '../Screens/Tab_Navigators/Home';
 import ProductShow from '../Screens/Stack_Screens/productShow';
 import TabNaviagtion from './Tab_Naviagtion';
-const Stack = createNativeStackNavigator();
+import SearchCOmponenet from '../Screens/Stack_Screens/searchComponet';
 
 // create a component
 const StackNaviagtion = () => {
+  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator screenOptions={{headerShown: true}}>
       <Stack.Screen
         name="HomeScreen"
         component={TabNaviagtion}
-        // options={{headerShown: false}}
+        options={{headerShown: false}}
       />
-      <Stack.Screen name="Product" component={ProductShow} />
+      <Stack.Screen name="Product-Page" component={ProductShow} />
+      <Stack.Screen name="Search-Screen" component={SearchCOmponenet} />
     </Stack.Navigator>
   );
 };

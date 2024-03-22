@@ -1,39 +1,44 @@
 //import liraries
-import React, {useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Dimensions,
-  Image,
-  ScrollView,
-  Button,
-} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {View, StyleSheet, FlatList, Dimensions, Button} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 import ItemShowList from '../../components/itemShow';
 import Header from '../../components/header';
-import SearchCOmponenet from '../../components/searchComponet';
+import {addProducts} from '../../Redux/Slices/ProductsSlice';
 
 // create a component
 const Home = ({navigation}) => {
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
-  console.log(products);
-  const getProduct = () => {
+  // console.log(products);
+
+  // useCallback from api
+  const fetchData = useCallback(() => {
     fetch('https://fakestoreapi.com/products')
       .then(res => res.json())
-      .then(json => setProducts(json));
-  };
+      .then(json => {
+        setProducts(json);
+        dispatch(addProducts(json));
+      });
+  }, [dispatch]);
+  // const getProduct = () => {};
+  // useCallback function calls
+
   useEffect(() => {
-    getProduct();
-  }, []);
+    fetchData();
+  }, [fetchData]);
   return (
     <View style={styles.container}>
       {/* <Header /> */}
       <FlatList
         data={products}
         stickyHeaderIndices={[0]}
+        initialNumToRender={7}
         numColumns={2}
-        ListHeaderComponent={<Header />}
-        ListHeaderComponentStyle={<Header />}
+        ListHeaderComponent={
+          <Header onPress={() => navigation.navigate('Search-Screen')} />
+        }
+        // ListHeaderComponentStyle={<Header />}
         renderItem={({item, index}) => {
           return (
             <ItemShowList
@@ -42,11 +47,12 @@ const Home = ({navigation}) => {
               price={item.price}
               rating={item.rating.rate}
               title={item.title}
+              onPress={() => navigation.navigate('Product-Page', {data: item})}
             />
           );
         }}
       />
-      <Button title="move on" onPress={() => navigation.navigate('Product')} />
+      {/* <Button title="move on" onPress={() => navigation.navigate('Product')} /> */}
     </View>
   );
 };

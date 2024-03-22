@@ -1,11 +1,12 @@
 //import liraries
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import SearchCOmponenet from './searchComponet';
+import SearchCOmponenet from '../Screens/Stack_Screens/searchComponet';
+import SearchDummy from './searchDummy';
 
 // create a component
-const Header = () => {
-  return <SearchCOmponenet />;
+const Header = ({onPress}) => {
+  return <SearchDummy onPress={onPress} />;
 };
 
 // define your styles

@@ -2,11 +2,16 @@
 import React from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {verticalScale, horizontalScale} from '../utill/metrices';
+import {verticalScale, horizontalScale} from '../../utill/metrices';
 // import {Color} from '../utill/color';
+import {useSelector} from 'react-redux'
 
 // create a component
 const SearchCOmponenet = () => {
+  // const state = useSelector(state => state);
+  const state = useSelector(state => state.product.data);
+  console.log(JSON.stringify(state));
+
   return (
     <View style={styles.container}>
       <View style={styles.TextInput}>

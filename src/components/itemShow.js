@@ -1,12 +1,12 @@
 //import liraries
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {horizontalScale, verticalScale} from '../utill/metrices';
 
 // create a component
-const ItemShowList = ({image, rating, count, title, price}) => {
+const ItemShowList = ({image, rating, count, title, price, onPress}) => {
   return (
-    <View style={styles.rootContainer}>
+    <TouchableOpacity style={styles.rootContainer} onPress={onPress}>
       <View style={styles.container}>
         <Image
           source={{uri: image}}
@@ -26,7 +26,7 @@ const ItemShowList = ({image, rating, count, title, price}) => {
         <Text style={styles.textStyle}>{title.substring(0, 11)}</Text>
         <Text style={styles.textStyle}>${price}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
   rootContainer: {
     // flex: 1,
     backgroundColor: 'white',
-    padding:1,
-    elevation:5,
-    shadowColor:'black',
-    shadowOpacity:0.2
+    padding: 1,
+    elevation: 5,
+    shadowColor: 'black',
+    shadowOpacity: 0.2,
   },
   imageStyle: {
     height: verticalScale(250),
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-   
   },
   RatingText: {
     position: 'absolute',
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
   },
   titleTextAera: {
     marginTop: verticalScale(15),
-    padding:2
+    padding: 2,
   },
   textStyle: {
     color: 'black',

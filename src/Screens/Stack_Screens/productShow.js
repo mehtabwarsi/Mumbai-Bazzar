@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
+import {horizontalScale, verticalScale} from '../../utill/metrices';
 
 // create a component
-const ProductShow = () => {
+const ProductShow = ({navigation, route}) => {
+  console.log(route.params.data);
+  const ImageSrc = route.params.data.image;
   return (
     <ScrollView style={styles.rootConatiner}>
       <View style={styles.container}>
-        <Text>hello</Text>
+        <View>
+          <Image
+            source={{uri: ImageSrc}}
+            style={styles.imageStyle}
+            resizeMode="contain"
+          />
+        </View>
       </View>
     </ScrollView>
   );
@@ -21,6 +30,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  imageStyle: {
+    height: verticalScale(300),
+    width: horizontalScale(200),
   },
 });
 
