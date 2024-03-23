@@ -3,7 +3,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 // create a component
-const Notification = () => {
+const Wishlist = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.textStyle}>Notification</Text>
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default Notification;
+export default Wishlist;

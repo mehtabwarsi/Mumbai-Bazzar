@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Tab screens
 import Home from '../Screens/Tab_Navigators/Home';
 import Cart from '../Screens/Tab_Navigators/Cart';
-import Notification from '../Screens/Tab_Navigators/Notification';
+import Wishlist from '../Screens/Tab_Navigators/Notification';
 import Profile from '../Screens/Tab_Navigators/Profile';
 
 // create a component
@@ -39,11 +39,11 @@ const TabNaviagtion = () => {
         }}
       />
       <Tab.Screen
-        name="Notifiction"
-        component={Notification}
+        name="Wishlist"
+        component={Wishlist}
         options={{
           tabBarIcon: ({color, size}) => (
-            <Icon name="bell" color={color} size={size} />
+            <Icon name="heart" color={color} size={size} />
           ),
         }}
       />

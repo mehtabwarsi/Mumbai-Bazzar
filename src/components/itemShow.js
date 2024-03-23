@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {horizontalScale, verticalScale} from '../utill/metrices';
+import { Color } from '../utill/color';
 
 // create a component
 const ItemShowList = ({image, rating, count, title, price, onPress}) => {
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   RatingText: {
     position: 'absolute',
     marginTop: verticalScale(200),
-    backgroundColor: 'yellow',
+    backgroundColor: Color.primayColor,
     borderRadius: 30,
     flexDirection: 'row',
   },
