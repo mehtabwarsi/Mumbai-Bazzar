@@ -19,7 +19,7 @@ const Home = ({navigation}) => {
       .then(json => {
         setProducts(json);
         dispatch(addProducts(json));
-      });
+      }); 
   }, [dispatch]);
   // const getProduct = () => {};
   // useCallback function calls

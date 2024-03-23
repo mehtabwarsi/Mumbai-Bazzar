@@ -1,30 +1,79 @@
 //import liraries
-import React from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {verticalScale, horizontalScale} from '../../utill/metrices';
 // import {Color} from '../utill/color';
-import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
-// create a component
+// scrreens
+import SearchItemShow from '../../components/searchItemShow';
+
 const SearchCOmponenet = () => {
-  // const state = useSelector(state => state);
-  const state = useSelector(state => state.product.data);
-  console.log(JSON.stringify(state));
+  const products = useSelector(state => state.product.data);
+  // console.log(JSON.stringify(products));
+  const [search, setSearch] = useState('');
+  const [oldData, setOlddata] = useState(products);
+  const [searchedList, setSearchedList] = useState([]);
 
+  // navigation hooks
+  const navigation = useNavigation();
+
+  // search matching function which in use
+  const filterData = txt => {
+    let newData = oldData.filter(item => {
+      return item.title.toLowerCase().match(txt.toLowerCase());
+    });
+    setSearchedList(newData);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.TextInput}>
         <Icon name="search" color={'black'} size={22} />
         <TextInput
           // style={styles.TextInput}
+          value={search}
           placeholder="search item"
           placeholderTextColor={'grey'}
           style={styles.inputTextColor}
-          onFocus={() => console.log('hello')}
-          // navigate the screen when foucs 
+          onChangeText={txt => {
+            setSearch(txt);
+            filterData(txt);
+          }}
         />
+        {search !== '' && (
+          <Icon
+            onPress={() => {
+              setSearch('');
+              filterData('');
+            }}
+            name={'cancel'}
+            color={'black'}
+            size={22}
+          />
+        )}
       </View>
+      <FlatList
+        data={searchedList}
+        initialNumToRender={7}
+        renderItem={({item, index}) => {
+          return (
+            <SearchItemShow
+              imageSrc={item.image}
+              title={item.title}
+              price={item.price}
+              description={item.description}
+              onPress={() => navigation.navigate('Product-Page', {data: item})}
+            />
+          );
+        }}
+      />
     </View>
   );
 };
@@ -48,8 +97,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: verticalScale(40),
     width: 'auto',
-    // justifyContent:'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal: 20,
     paddingLeft: 6,
   },
   inputTextColor: {

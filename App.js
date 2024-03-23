@@ -17,6 +17,7 @@ import SearchDummy from './src/components/searchDummy';
 import ItemShowList from './src/components/itemShow';
 import {NavigationContainer} from '@react-navigation/native';
 import StackNaviagtion from './src/Navigation/Stack_NAviagtion';
+import SearchItemShow from './src/components/searchItemShow';
 // screens
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <StackNaviagtion />
       </NavigationContainer>
     </Provider>
+    // <SearchItemShow />
   );
 }
 
