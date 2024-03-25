@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Image, Button} from 'react-native';
 import {horizontalScale, verticalScale} from '../../utill/metrices';
-
+import {useDispatch} from 'react-redux';
+import {addItemToWishList} from '../../Redux/Slices/WishListSlice';
+import {addItemToCart} from '../../Redux/Slices/CartSlice';
 // create a component
 const ProductShow = ({navigation, route}) => {
-  console.log(route.params.data);
+  const dispatch = useDispatch();
+  // console.log(route.params.data);
   const ImageSrc = route.params.data.image;
   return (
     <ScrollView style={styles.rootConatiner}>
@@ -16,6 +19,14 @@ const ProductShow = ({navigation, route}) => {
             resizeMode="contain"
           />
         </View>
+        <Button
+          title="WishList"
+          onPress={() => dispatch(addItemToWishList(route.params.data))}
+        />
+        <Button
+          title="Cart"
+          onPress={() => dispatch(addItemToCart(route.params.data))}
+        />
       </View>
     </ScrollView>
   );

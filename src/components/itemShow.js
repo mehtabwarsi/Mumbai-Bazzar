@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: verticalScale(250),
     width: horizontalScale(200),
+    // backgroundColor:Color.primayColor
   },
   container: {
     alignItems: 'center',

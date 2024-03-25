@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "62789841045",
+    "project_id": "mumbai-bazzar-f9859",
+    "storage_bucket": "mumbai-bazzar-f9859.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62789841045:android:7be37ee088dd1bf1e9eb9c",
+        "android_client_info": {
+          "package_name": "com.mumbai_bazzar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSxmrl7_t2pRyyhN9sVg8LNcSia84WxZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

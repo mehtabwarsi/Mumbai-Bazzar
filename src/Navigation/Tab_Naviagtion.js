@@ -2,15 +2,21 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useSelector} from 'react-redux';
 // Tab screens
 import Home from '../Screens/Tab_Navigators/Home';
 import Cart from '../Screens/Tab_Navigators/Cart';
-import Wishlist from '../Screens/Tab_Navigators/Notification';
+import Wishlist from '../Screens/Tab_Navigators/WishList';
 import Profile from '../Screens/Tab_Navigators/Profile';
 
 // create a component
 
 const TabNaviagtion = () => {
+  // cart selector for items count
+  const items = useSelector(state => state.cart);
+  const numberOfItems = items.data.length;
+  console.log('from cart', items);
+  console.log('from cart', numberOfItems);
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
@@ -36,6 +42,7 @@ const TabNaviagtion = () => {
           tabBarIcon: ({color, size}) => (
             <Icon name="cart" color={color} size={size} />
           ),
+          tabBarBadge: numberOfItems,
         }}
       />
       <Tab.Screen

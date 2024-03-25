@@ -1,11 +1,6 @@
 //import liraries
 import React, {useState} from 'react';
-import {
-  View,
-  TextInput,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
+import {View, TextInput, StyleSheet, FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {verticalScale, horizontalScale} from '../../utill/metrices';
 // import {Color} from '../utill/color';
@@ -20,7 +15,7 @@ const SearchCOmponenet = () => {
   // console.log(JSON.stringify(products));
   const [search, setSearch] = useState('');
   const [oldData, setOlddata] = useState(products);
-  const [searchedList, setSearchedList] = useState([]);
+  const [searchedList, setSearchedList] = useState(oldData);
 
   // navigation hooks
   const navigation = useNavigation();

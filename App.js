@@ -7,7 +7,7 @@
 
 import React from 'react';
 import {Provider} from 'react-redux';
-import {store} from './src/Redux/Slices/store';
+import {store} from './src/Redux/Store/store';
 
 import TabNaviagtion from './src/Navigation/Tab_Naviagtion';
 import SignIn from './src/Screens/Auth_Screens/signIn';
@@ -26,7 +26,7 @@ function App() {
         <StackNaviagtion />
       </NavigationContainer>
     </Provider>
-    // <SearchItemShow />
+    // <SignIn/>
   );
 }
 
