@@ -12,7 +12,6 @@ import {
   Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
 import {Color} from '../../utill/color';
 import PrimaryButton from '../../utill/PrimaryButton';
 import {
@@ -37,7 +36,6 @@ const SignIn = ({navigation}) => {
         <View style={styles.TextArea}>
           <Text style={styles.titleText}>Welcome</Text>
           <Text style={styles.smallText}>
-            {' '}
             Sign up or Login with your Mobile number
           </Text>
         </View>
@@ -87,12 +85,7 @@ const SignIn = ({navigation}) => {
         {/* scocial meadia Log in */}
       </View>
       {/* Don't hanve an acount sign up */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          marginTop: verticalScale(70),
-        }}>
+      <View style={styles.SignupText}>
         <Text style={styles.smallText}>Don't have an account ? </Text>
         <TouchableOpacity onPress={() => navigation.navigate('signUp')}>
           <Text style={styles.signUpText}>SignUp</Text>
@@ -164,6 +157,13 @@ const styles = StyleSheet.create({
   signUpText: {
     color: Color.primayColor,
     fontWeight: '500',
+  },
+  SignupText: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    // marginTop: verticalScale(70),
+    marginTop: 'auto',
+    paddingVertical: verticalScale(4),
   },
 });
 

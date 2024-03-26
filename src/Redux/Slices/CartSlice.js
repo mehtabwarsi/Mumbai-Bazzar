@@ -9,7 +9,17 @@ const CartSlice = createSlice({
   reducers: {
     addItemToCart(state, action) {
       let tempData = state.data;
-      tempData.push(action.payload);
+      let isItemExit = false;
+      tempData.map(item => {
+        if (item.id === action.payload.id) {
+          isItemExit = true;
+          item.qty = item.qty + 1;
+        }
+      });
+      if (!isItemExit) {
+        tempData.push(action.payload);
+      }
+
       state.data = tempData;
       console.log('added');
     },

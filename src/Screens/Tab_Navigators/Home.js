@@ -18,8 +18,11 @@ const Home = ({navigation}) => {
       .then(res => res.json())
       .then(json => {
         setProducts(json);
+        json.map(item => {
+          item.qty = 1;
+        });
         dispatch(addProducts(json));
-      }); 
+      });
   }, [dispatch]);
   // const getProduct = () => {};
   // useCallback function calls
