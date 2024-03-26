@@ -5,6 +5,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProductShow from '../Screens/Stack_Screens/productShow';
 import TabNaviagtion from './Tab_Naviagtion';
 import SearchCOmponenet from '../Screens/Stack_Screens/searchComponet';
+// auth screens
+import SignIn from '../Screens/Auth_Screens/signIn';
+import SignUp from '../Screens/Auth_Screens/signup';
 
 // create a component
 const StackNaviagtion = () => {
@@ -18,6 +21,8 @@ const StackNaviagtion = () => {
       />
       <Stack.Screen name="Product-Page" component={ProductShow} />
       <Stack.Screen name="Search-Screen" component={SearchCOmponenet} />
+      <Stack.Screen name="signIn" component={SignIn} />
+      <Stack.Screen name="signUp" component={SignUp} />
     </Stack.Navigator>
   );
 };

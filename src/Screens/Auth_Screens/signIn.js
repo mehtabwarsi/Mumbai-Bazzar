@@ -12,7 +12,9 @@ import {
   Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
 import {Color} from '../../utill/color';
+import PrimaryButton from '../../utill/PrimaryButton';
 import {
   verticalScale,
   horizontalScale,
@@ -20,7 +22,8 @@ import {
 } from '../../utill/metrices';
 
 // create a component
-const SignIn = () => {
+const SignIn = ({navigation}) => {
+  // const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <View style={styles.container}>
@@ -63,13 +66,37 @@ const SignIn = () => {
             </View>
           </View>
         </KeyboardAvoidingView>
-        <View>
-          <TouchableOpacity
-            style={styles.PrimaryButton}
-            onPress={() => console.log('hello')}>
-            <Text style={styles.PrimmaryButtonText}>Continue</Text>
-          </TouchableOpacity>
+        {/* primary button */}
+        <View style={styles.PrimaryButtonStyle}>
+          <PrimaryButton
+            title={'Log In'}
+            onPress={() => console.log('hello')}
+          />
         </View>
+        {/* primary button */}
+        {/* divider area */}
+        <View style={styles.ORText}>
+          <Text style={styles.smallText}>OR</Text>
+        </View>
+        {/* scocial meadia Log in */}
+        <View style={styles.SocailButton}>
+          <Icon name="facebook" size={30} color={'#4267B2'} />
+          <Icon name="google" size={30} color={'#4267B2'} />
+          <Icon name="email" size={30} color={'#4267B2'} />
+        </View>
+        {/* scocial meadia Log in */}
+      </View>
+      {/* Don't hanve an acount sign up */}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          marginTop: verticalScale(70),
+        }}>
+        <Text style={styles.smallText}>Don't have an account ? </Text>
+        <TouchableOpacity onPress={() => navigation.navigate('signUp')}>
+          <Text style={styles.signUpText}>SignUp</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -107,23 +134,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 6,
   },
-  PrimaryButton: {
-    backgroundColor: Color.primayColor,
-    width: horizontalScale(250),
-    height: verticalScale(50),
+  PrimaryButtonStyle: {
     marginTop: verticalScale(26),
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    elevation: 1,
-    shadowColor: Color.primayColor,
-    shadowOpacity: 5,
-  },
-  PrimmaryButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
   ImageStyle: {
     justifyContent: 'center',
@@ -131,11 +143,27 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(45),
   },
   ImageDime: {
-    height: verticalScale(350),
-    width: horizontalScale(350),
+    height: verticalScale(250),
+    width: horizontalScale(250),
   },
   inputTextColor: {
     color: 'black',
+  },
+  ORText: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: verticalScale(20),
+  },
+  SocailButton: {
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    marginTop: verticalScale(20),
+    flexDirection: 'row',
+    marginHorizontal: horizontalScale(110),
+  },
+  signUpText: {
+    color: Color.primayColor,
+    fontWeight: '500',
   },
 });
 

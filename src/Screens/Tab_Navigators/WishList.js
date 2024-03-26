@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
-// import ItemShowList from '../../components/itemShow';
+import ItemShowList from '../../components/itemShow';
 import SearchItemShow from '../../components/searchItemShow';
 import {useNavigation} from '@react-navigation/native';
 
@@ -18,13 +18,15 @@ const Wishlist = () => {
       <FlatList
         data={items.data}
         key={items.data.id}
+        // numColumns={2}
         renderItem={({item, index}) => {
           return (
-            <SearchItemShow
-              imageSrc={item.image}
-              title={item.title}
+            <ItemShowList
+              image={item.image}
+              count={item.rating.count}
               price={item.price}
-              description={item.description}
+              rating={item.rating.rate}
+              title={item.title}
               onPress={() => navigation.navigate('Product-Page', {data: item})}
             />
           );

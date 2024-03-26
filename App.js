@@ -18,6 +18,7 @@ import ItemShowList from './src/components/itemShow';
 import {NavigationContainer} from '@react-navigation/native';
 import StackNaviagtion from './src/Navigation/Stack_NAviagtion';
 import SearchItemShow from './src/components/searchItemShow';
+import TestProduct from './src/components/textProduct';
 // screens
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <StackNaviagtion />
       </NavigationContainer>
     </Provider>
-    // <SignIn/>
+//  <TestProduct/>
   );
 }
 

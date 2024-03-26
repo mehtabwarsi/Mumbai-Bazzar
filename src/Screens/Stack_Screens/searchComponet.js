@@ -54,21 +54,25 @@ const SearchCOmponenet = () => {
           />
         )}
       </View>
-      <FlatList
-        data={searchedList}
-        initialNumToRender={7}
-        renderItem={({item, index}) => {
-          return (
-            <SearchItemShow
-              imageSrc={item.image}
-              title={item.title}
-              price={item.price}
-              description={item.description}
-              onPress={() => navigation.navigate('Product-Page', {data: item})}
-            />
-          );
-        }}
-      />
+      <View style={styles.listStyle}>
+        <FlatList
+          data={searchedList}
+          initialNumToRender={7}
+          renderItem={({item, index}) => {
+            return (
+              <SearchItemShow
+                imageSrc={item.image}
+                title={item.title}
+                price={item.price}
+                description={item.description}
+                onPress={() =>
+                  navigation.navigate('Product-Page', {data: item})
+                }
+              />
+            );
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -78,8 +82,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    marginBottom: verticalScale(30),
-    paddingBottom: verticalScale(40),
   },
   TextInput: {
     marginTop: verticalScale(23),
@@ -96,6 +98,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingLeft: 6,
+  },
+  listStyle: {
+    marginTop: verticalScale(30),
   },
   inputTextColor: {
     color: 'black',

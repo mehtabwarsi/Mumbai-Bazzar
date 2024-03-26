@@ -36,6 +36,15 @@ const TabNaviagtion = () => {
         }}
       />
       <Tab.Screen
+        name="Wishlist"
+        component={Wishlist}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name="heart" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Cart"
         component={Cart}
         options={{
@@ -45,15 +54,7 @@ const TabNaviagtion = () => {
           tabBarBadge: numberOfItems,
         }}
       />
-      <Tab.Screen
-        name="Wishlist"
-        component={Wishlist}
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="heart" color={color} size={size} />
-          ),
-        }}
-      />
+      
       <Tab.Screen
         name="Profile"
         component={Profile}

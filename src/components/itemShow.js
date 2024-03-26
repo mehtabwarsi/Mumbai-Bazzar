@@ -1,24 +1,28 @@
 //import liraries
-import React, {Component} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {horizontalScale, verticalScale} from '../utill/metrices';
-import { Color } from '../utill/color';
 
 // create a component
 const ItemShowList = ({image, rating, count, title, price, onPress}) => {
+  let star = String.fromCodePoint(9733);
+  let combine = rating + star;
   return (
     <TouchableOpacity style={styles.rootContainer} onPress={onPress}>
       <View style={styles.container}>
-        <Image
-          source={{uri: image}}
-          style={styles.imageStyle}
-          resizeMode="contain"
-        />
+        <View style={{justifyContent: 'center', alignContent: 'center'}}>
+          <Image
+            source={{uri: image}}
+            style={styles.imageStyle}
+            resizeMode="contain"
+          />
+        </View>
       </View>
       {/* absoute value area */}
       <View style={styles.RatingText}>
-        <Text style={styles.RatingTextStyle}>{rating}</Text>
-        <Text style={styles.RatingTextStyle}>&#9733;</Text>
+        <Text style={[styles.starColor, styles.RatingTextStyles]}>
+          {combine}
+        </Text>
         <Text style={styles.RatingTextStyle}>|</Text>
         <Text style={styles.RatingTextStyle}>{count}</Text>
       </View>
@@ -40,25 +44,37 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowColor: 'black',
     shadowOpacity: 0.2,
+    borderRadius: 30,
+    height: verticalScale(300),
+    width: horizontalScale(200),
   },
   imageStyle: {
-    height: verticalScale(250),
+    height: verticalScale(150),
     width: horizontalScale(200),
     // backgroundColor:Color.primayColor
   },
-  container: {
-    alignItems: 'center',
-  },
+  // container: {
+  //   alignItems: 'center',
+  //   alignContent: 'center',
+  //   justifyContent: 'center',
+  // },
   RatingText: {
     position: 'absolute',
     marginTop: verticalScale(200),
-    backgroundColor: Color.primayColor,
+    backgroundColor: 'white',
     borderRadius: 30,
     flexDirection: 'row',
+    width: 'auto',
+    height: verticalScale(30),
+    elevation: 2,
+    alignItems: 'center',
   },
   RatingTextStyle: {
     color: 'black',
     padding: 4,
+    fontSize: 12,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   titleTextAera: {
     marginTop: verticalScale(15),
@@ -66,6 +82,12 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: 'black',
+  },
+  starColor: {
+    color: 'green',
+    padding: 4,
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });
 
