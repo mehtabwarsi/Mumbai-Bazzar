@@ -10,7 +10,7 @@ const ItemShowList = ({image, rating, count, title, price, onPress}) => {
   return (
     <TouchableOpacity style={styles.rootContainer} onPress={onPress}>
       <View style={styles.container}>
-        <View style={{justifyContent: 'center', alignContent: 'center'}}>
+        <View style={styles.imageContainerStyle}>
           <Image
             source={{uri: image}}
             style={styles.imageStyle}
@@ -18,18 +18,17 @@ const ItemShowList = ({image, rating, count, title, price, onPress}) => {
           />
         </View>
       </View>
-      {/* absoute value area */}
+      {/* end this line */}
+      <View style={styles.titleTextAera}>
+        <Text style={styles.textStyle}>{title.substring(0, 11)}</Text>
+        <Text style={styles.textStyle}>${price}</Text>
+      </View>
       <View style={styles.RatingText}>
         <Text style={[styles.starColor, styles.RatingTextStyles]}>
           {combine}
         </Text>
         <Text style={styles.RatingTextStyle}>|</Text>
         <Text style={styles.RatingTextStyle}>{count}</Text>
-      </View>
-      {/* end this line */}
-      <View style={styles.titleTextAera}>
-        <Text style={styles.textStyle}>{title.substring(0, 11)}</Text>
-        <Text style={styles.textStyle}>${price}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -38,36 +37,34 @@ const ItemShowList = ({image, rating, count, title, price, onPress}) => {
 // define your styles
 const styles = StyleSheet.create({
   rootContainer: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: 'white',
-    padding: 1,
     elevation: 5,
     shadowColor: 'black',
     shadowOpacity: 0.2,
-    borderRadius: 30,
     height: verticalScale(300),
     width: horizontalScale(200),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imageStyle: {
     height: verticalScale(150),
-    width: horizontalScale(200),
+    width: horizontalScale(150),
     // backgroundColor:Color.primayColor
   },
-  // container: {
-  //   alignItems: 'center',
-  //   alignContent: 'center',
-  //   justifyContent: 'center',
-  // },
+  imageContainerStyle: {
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
   RatingText: {
-    position: 'absolute',
-    marginTop: verticalScale(200),
+    // position: 'absolute',
     backgroundColor: 'white',
     borderRadius: 30,
     flexDirection: 'row',
     width: 'auto',
     height: verticalScale(30),
     elevation: 2,
-    alignItems: 'center',
+    paddingHorizontal: 10,
   },
   RatingTextStyle: {
     color: 'black',
@@ -77,11 +74,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   titleTextAera: {
-    marginTop: verticalScale(15),
     padding: 2,
+    alignContent: 'center',
+    alignItems: 'center',
   },
   textStyle: {
     color: 'black',
+    fontWeight: '700',
   },
   starColor: {
     color: 'green',

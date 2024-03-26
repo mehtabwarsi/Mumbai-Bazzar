@@ -31,8 +31,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    marginBottom: verticalScale(30),
+    // marginBottom: verticalScale(30),
     paddingBottom: verticalScale(40),
+    elevation:3
   },
   TextInput: {
     marginTop: verticalScale(23),

@@ -8,12 +8,14 @@ import SearchCOmponenet from '../Screens/Stack_Screens/searchComponet';
 // auth screens
 import SignIn from '../Screens/Auth_Screens/signIn';
 import SignUp from '../Screens/Auth_Screens/signup';
+import TabBarHeader from '../utill/tabBatStyle';
 
 // create a component
 const StackNaviagtion = () => {
   const Stack = createNativeStackNavigator();
   return (
-    <Stack.Navigator screenOptions={{headerShown: true}}>
+    <Stack.Navigator
+      screenOptions={{headerShown: true,}}>
       <Stack.Screen
         name="HomeScreen"
         component={TabNaviagtion}

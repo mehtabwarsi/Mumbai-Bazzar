@@ -14,7 +14,6 @@ const Wishlist = () => {
   // const [wishListItems, setWishListItems] = useState(items.data);
   return (
     <View style={styles.container}>
-      <Text style={styles.textStyle}>color</Text>
       <FlatList
         data={items.data}
         key={items.data.id}

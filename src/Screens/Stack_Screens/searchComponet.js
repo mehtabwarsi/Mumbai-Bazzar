@@ -43,15 +43,17 @@ const SearchCOmponenet = () => {
           }}
         />
         {search !== '' && (
-          <Icon
-            onPress={() => {
-              setSearch('');
-              filterData('');
-            }}
-            name={'cancel'}
-            color={'black'}
-            size={22}
-          />
+          <View style={{marginLeft: 'auto'}}>
+            <Icon
+              onPress={() => {
+                setSearch('');
+                filterData('');
+              }}
+              name={'cancel'}
+              color={'black'}
+              size={22}
+            />
+          </View>
         )}
       </View>
       <View style={styles.listStyle}>
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: verticalScale(40),
     width: 'auto',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-evenly',
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingLeft: 6,

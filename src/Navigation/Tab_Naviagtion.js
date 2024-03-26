@@ -8,6 +8,7 @@ import Home from '../Screens/Tab_Navigators/Home';
 import Cart from '../Screens/Tab_Navigators/Cart';
 import Wishlist from '../Screens/Tab_Navigators/WishList';
 import Profile from '../Screens/Tab_Navigators/Profile';
+import {Color} from '../utill/color';
 
 // create a component
 
@@ -52,9 +53,12 @@ const TabNaviagtion = () => {
             <Icon name="cart" color={color} size={size} />
           ),
           tabBarBadge: numberOfItems,
-        }}
-      />
-      
+          tabBarBadgeStyle: {
+            backgroundColor: Color.primayColor,
+            color: 'white',
+          },
+        }}/>
+
       <Tab.Screen
         name="Profile"
         component={Profile}
