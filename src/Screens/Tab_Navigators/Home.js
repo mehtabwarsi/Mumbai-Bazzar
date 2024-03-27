@@ -1,7 +1,7 @@
 //import liraries
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, StyleSheet, FlatList, Dimensions, Button} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import ItemShowList from '../../components/itemShow';
 import Header from '../../components/header';
 import {addProducts} from '../../Redux/Slices/ProductsSlice';

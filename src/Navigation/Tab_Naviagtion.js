@@ -16,8 +16,8 @@ const TabNaviagtion = () => {
   // cart selector for items count
   const items = useSelector(state => state.cart);
   const numberOfItems = items.data.length;
-  console.log('from cart', items);
-  console.log('from cart', numberOfItems);
+  // console.log('from cart', items);
+  // console.log('from cart', numberOfItems);
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator

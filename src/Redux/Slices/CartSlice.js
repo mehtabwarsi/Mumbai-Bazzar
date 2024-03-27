@@ -21,10 +21,29 @@ const CartSlice = createSlice({
       }
 
       state.data = tempData;
-      console.log('added');
+      console.log('added to cart');
+    },
+    reduceItemfromCart(state, action) {
+      let tempData = state.data;
+      tempData.map(item => {
+        if (item.id === action.payload.id) {
+          item.qty = item.qty - 1;
+        }
+      });
+
+      state.data = tempData;
+      console.log(' remove from cart');
+    },
+    removeItemfromCart(state, action) {
+      let tempData = state.data;
+      tempData.splice(action.payload, 1);
+
+      state.data = tempData;
+      console.log(' remove from cart');
     },
   },
 });
 
-export const {addItemToCart} = CartSlice.actions;
+export const {addItemToCart, reduceItemfromCart, removeItemfromCart} =
+  CartSlice.actions;
 export default CartSlice.reducer;

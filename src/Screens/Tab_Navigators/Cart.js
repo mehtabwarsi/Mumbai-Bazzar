@@ -1,12 +1,58 @@
 //import liraries
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import ItemShowList from '../../components/itemShow';
+import SearchItemShow from '../../components/searchItemShow';
+import {useNavigation} from '@react-navigation/native';
+import CartShow from '../../components/CartShow';
+import {
+  addItemToCart,
+  reduceItemfromCart,
+  removeItemfromCart,
+} from '../../Redux/Slices/CartSlice';
 
 // create a component
 const Cart = () => {
+  // console.log(itemData)
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const items = useSelector(state => state.cart.data);
+  // console.log(items.length === 0);
   return (
     <View style={styles.container}>
-      <Text style={styles.textStyle}>Cart</Text>
+      {/* here is applay a one image to add bag */}
+      {items.length === 0 ? (
+        <Text style={{color: 'black'}}> items is not here</Text>
+      ) : (
+        <Text style={{color: 'black'}}>items is here</Text>
+      )}
+      <FlatList
+        data={items}
+        key={items.id}
+        // numColumns={2}
+        renderItem={({item, index}) => {
+          return (
+            <CartShow
+              image={item.image}
+              count={item.rating.count}
+              price={item.price}
+              rating={item.rating.rate}
+              title={item.title}
+              qty={item.qty}
+              qtyAdd={() => dispatch(addItemToCart(item))}
+              qtyRemove={() => {
+                if (item.qty > 1) {
+                  dispatch(reduceItemfromCart(item));
+                } else {
+                  dispatch(removeItemfromCart(index));
+                }
+              }}
+              onPress={() => navigation.navigate('Product-Page', {data: item})}
+            />
+          );
+        }}
+      />
     </View>
   );
 };
@@ -15,13 +61,14 @@ const Cart = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'white',
   },
-  textStyle:{
-    color:'black'
-  }
+  textStyle: {
+    color: 'black',
+  },
+  qtystyle: {
+    flexDirection: 'row',
+  },
 });
 
 //make this component available to the app

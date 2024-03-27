@@ -10,7 +10,7 @@ import {useNavigation} from '@react-navigation/native';
 const Wishlist = () => {
   const navigation = useNavigation();
   const items = useSelector(state => state.wishList);
-  console.log('from wishList', JSON.stringify(items) + ' ' + items.data.length);
+  // console.log('from wishList', JSON.stringify(items) + ' ' + items.data.length);
   // const [wishListItems, setWishListItems] = useState(items.data);
   return (
     <View style={styles.container}>
