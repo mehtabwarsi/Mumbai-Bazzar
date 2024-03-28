@@ -2,13 +2,22 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ScrollView, Image, Button} from 'react-native';
 import {horizontalScale, verticalScale} from '../../utill/metrices';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {addItemToWishList} from '../../Redux/Slices/WishListSlice';
 import {addItemToCart} from '../../Redux/Slices/CartSlice';
 import PrimaryButton from '../../utill/PrimaryButton';
 // create a component
 const ProductShow = ({navigation, route}) => {
   const dispatch = useDispatch();
+  const wishData = useSelector(state => state.wishList.data);
+  const productData = useSelector(state => state.product.data);
+  console.log('from wih' + wishData);
+  if(productData ===  wishData){
+    console.log("a")
+  }else{
+    console.log("b")
+
+  }
   // console.log(route.params.data);
   const ImageSrc = route.params.data.image;
   const titleData = route.params.data.title;
@@ -44,7 +53,7 @@ const ProductShow = ({navigation, route}) => {
         </View>
         <View style={styles.buttonContainer}>
           <PrimaryButton
-            title={'Wishlist'}
+            title={wishData === productData ? 'wishlied' : 'wih'}
             onPress={() => dispatch(addItemToWishList(route.params.data))}
           />
         </View>
