@@ -10,19 +10,20 @@ import PrimaryButton from '../../utill/PrimaryButton';
 const ProductShow = ({navigation, route}) => {
   const dispatch = useDispatch();
   const wishData = useSelector(state => state.wishList.data);
-  const productData = useSelector(state => state.product.data);
+  const cartData = useSelector(state => state.cart.data);
   console.log('from wih' + wishData);
-  if(productData ===  wishData){
-    console.log("a")
-  }else{
-    console.log("b")
-
-  }
   // console.log(route.params.data);
   const ImageSrc = route.params.data.image;
   const titleData = route.params.data.title;
   const PriceData = route.params.data.price;
   const DescriptionData = route.params.data.description;
+  // it use for testing purpose
+  const data = route.params.data;
+  if (wishData.includes(data)) {
+    console.log('have it');
+  } else {
+    console.log('it not have');
+  }
   return (
     <ScrollView style={styles.rootConatiner}>
       <View style={styles.container}>
@@ -47,13 +48,13 @@ const ProductShow = ({navigation, route}) => {
         </View>
         <View style={styles.buttonContainer}>
           <PrimaryButton
-            title={'Add to bag'}
+            title={cartData.includes(data) ? 'Go to bag' : 'Add to cart'}
             onPress={() => dispatch(addItemToCart(route.params.data))}
           />
         </View>
         <View style={styles.buttonContainer}>
           <PrimaryButton
-            title={wishData === productData ? 'wishlied' : 'wih'}
+            title={wishData.includes(data) ? 'Wishlisted' : 'Wishlist'}
             onPress={() => dispatch(addItemToWishList(route.params.data))}
           />
         </View>
