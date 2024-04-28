@@ -28,8 +28,12 @@ const StackNaviagtion = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen name="Product-Page" component={ProductShow} />
-      <Stack.Screen name="Search-Screen" component={SearchCOmponenet}/>
-      <Stack.Screen name="signIn" component={SignIn} />
+      <Stack.Screen name="Search-Screen" component={SearchCOmponenet} />
+      <Stack.Screen
+        name="signIn"
+        component={SignIn}
+        options={{headerBackVisible: false, headerTitleAlign: 'center'}}
+      />
       <Stack.Screen name="signUp" component={SignUp} />
     </Stack.Navigator>
   );

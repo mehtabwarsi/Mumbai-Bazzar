@@ -16,13 +16,13 @@ const Profile = () => {
         .signOut()
         .then(() => console.log('User signed out!'));
       await AsyncStorage.removeItem('my-key');
+      navigation.navigate('signIn')
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <View style={styles.container}>
-      <Button title="sign in" onPress={() => navigation.navigate('signIn')} />
       <Button title="Log out" onPress={() => logOut()} />
     </View>
   );
