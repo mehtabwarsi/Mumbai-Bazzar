@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Color} from '../../utill/color';
 import PrimaryButton from '../../utill/PrimaryButton';
@@ -43,10 +44,14 @@ const SignIn = ({navigation}) => {
   // firebase using the auth
 
   const signIn = async () => {
+    // let token;
     try {
       const token = await auth().signInWithEmailAndPassword(email, pass);
       // User signed in successfully
-      console.log(token.user.uid);
+      // console.log(token.user.uid);
+       await AsyncStorage.setItem('my-key', token.user.uid);
+      console.log(AsyncStorage.getItem('my-key'))
+      navigation.goBack()
     } catch (error) {
       console.log(error);
       Alert.alert('Does not exits email and password');

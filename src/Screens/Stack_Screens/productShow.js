@@ -30,13 +30,27 @@ const ProductShow = ({navigation, route}) => {
     console.log('it not have');
   }
   // cheack user status if is loggend in or not
-  const cheackUserStatus = async () => {
-    const status = await AsyncStorage.getItem('IS_USER_LOGGED_IN');
-    let isLogedIn = false;
-    if (status === null) {
-      isLogedIn = false;
+  // const cheackUserStatus = async () => {
+  //   const status = await AsyncStorage.getItem('my-key');
+  //   let isLogedIn = false;
+  //   if (status === null) {
+  //     isLogedIn = false;
+  //   }
+  //   return (isLogedIn = true);
+  // };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('my-key');
+      if (value !== null) {
+        // value previously stored
+        dispatch(addItemToCart(route.params.data));
+      } else {
+        setvisible(true);
+      }
+    } catch (e) {
+      // error reading value
     }
-    isLogedIn = true;
   };
   return (
     <ScrollView style={styles.rootConatiner}>
@@ -67,26 +81,14 @@ const ProductShow = ({navigation, route}) => {
           <PrimaryButton
             title={cartData.includes(data) ? 'Go to bag' : 'Add to cart'}
             // onPress={() => dispatch(addItemToCart(route.params.data))}
-            onPress={() => {
-              if (!cheackUserStatus() === true) {
-                dispatch(addItemToCart(route.params.data));
-              } else {
-                setvisible(true)
-              }
-            }}
+            onPress={() => getData()}
           />
         </View>
         <View style={styles.buttonContainer}>
           <PrimaryButton
             title={wishData.includes(data) ? 'Wishlisted' : 'Wishlist'}
             // onPress={() => dispatch(addItemToWishList(route.params.data))}
-            onPress={() => {
-              if (!cheackUserStatus() === true) {
-                dispatch(addItemToCart(route.params.data));
-              } else {
-                setvisible(true)
-              }
-            }}
+            onPress={() => dispatch(addItemToWishList(route.params.data))}
           />
         </View>
       </View>
