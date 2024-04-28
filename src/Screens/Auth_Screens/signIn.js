@@ -10,8 +10,10 @@ import {
   Platform,
   ScrollView,
   Image,
+  Alert,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Color} from '../../utill/color';
 import PrimaryButton from '../../utill/PrimaryButton';
@@ -36,6 +38,19 @@ const SignIn = ({navigation}) => {
       .then(querySnapshot => {
         console.log(querySnapshot.docs[0]);
       });
+  };
+
+  // firebase using the auth
+
+  const signIn = async () => {
+    try {
+      const token = await auth().signInWithEmailAndPassword(email, pass);
+      // User signed in successfully
+      console.log(token.user.uid);
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Does not exits email and password');
+    }
   };
   return (
     <ScrollView style={styles.container}>
@@ -83,7 +98,8 @@ const SignIn = ({navigation}) => {
         </KeyboardAvoidingView>
         {/* primary button */}
         <View style={styles.PrimaryButtonStyle}>
-          <PrimaryButton title={'Log In'} onPress={() => login()} />
+          {/* <PrimaryButton title={'Log In'} onPress={() => login()} /> */}
+          <PrimaryButton title={'Log In'} onPress={() => signIn()} />
         </View>
         {/* primary button */}
         {/* divider area */}

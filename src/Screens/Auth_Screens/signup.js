@@ -12,6 +12,7 @@ import {
   Image,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import {Color} from '../../utill/color';
@@ -38,6 +39,26 @@ const SignUp = ({navigation}) => {
       })
       .then(() => {
         console.log('User added!');
+      });
+  };
+
+  // using the email and password firebase
+  const signUp = () => {
+    auth()
+      .createUserWithEmailAndPassword(email, pass)
+      .then(() => {
+        console.log('User account created & signed in!');
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        console.error(error);
       });
   };
   return (
@@ -100,7 +121,8 @@ const SignUp = ({navigation}) => {
         </KeyboardAvoidingView>
         {/* primary button */}
         <View style={styles.PrimaryButtonStyle}>
-          <PrimaryButton title={'Sign up'} onPress={() => addUser()} />
+          {/* <PrimaryButton title={'Sign up'} onPress={() => addUser()} /> */}
+          <PrimaryButton title={'Sign up'} onPress={() => signUp()} />
         </View>
       </View>
       <View style={styles.TextBottm}>
