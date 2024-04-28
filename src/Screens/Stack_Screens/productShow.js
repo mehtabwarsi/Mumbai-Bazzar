@@ -1,15 +1,18 @@
-import React, {Component, useCallback, useEffect} from 'react';
-import {View, Text, StyleSheet, ScrollView, Image, Button} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, ScrollView, Image, Alert} from 'react-native';
 import {horizontalScale, verticalScale} from '../../utill/metrices';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import {addItemToWishList} from '../../Redux/Slices/WishListSlice';
 import {addItemToCart} from '../../Redux/Slices/CartSlice';
 import PrimaryButton from '../../utill/PrimaryButton';
-import {Rating, AirbnbRating} from 'react-native-ratings';
-import {useNavigation} from '@react-navigation/native';
+import {AirbnbRating} from 'react-native-ratings';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Modal from 'react-native-modal';
+import ModelViewComponet from '../../components/modelViewComponet';
 // create a component
 const ProductShow = ({navigation, route}) => {
+  // model vislble
+  const [isVisible, setvisible] = useState(true);
   const dispatch = useDispatch();
   const wishData = useSelector(state => state.wishList.data);
   const cartData = useSelector(state => state.cart.data);
@@ -26,8 +29,15 @@ const ProductShow = ({navigation, route}) => {
   } else {
     console.log('it not have');
   }
-
-
+  // cheack user status if is loggend in or not
+  const cheackUserStatus = async () => {
+    const status = await AsyncStorage.getItem('IS_USER_LOGGED_IN');
+    let isLogedIn = false;
+    if (status === null) {
+      isLogedIn = false;
+    }
+    isLogedIn = true;
+  };
   return (
     <ScrollView style={styles.rootConatiner}>
       <View style={styles.container}>
@@ -56,16 +66,34 @@ const ProductShow = ({navigation, route}) => {
         <View style={styles.buttonContainer}>
           <PrimaryButton
             title={cartData.includes(data) ? 'Go to bag' : 'Add to cart'}
-            onPress={() => dispatch(addItemToCart(route.params.data))}
+            // onPress={() => dispatch(addItemToCart(route.params.data))}
+            onPress={() => {
+              if (!cheackUserStatus() === true) {
+                dispatch(addItemToCart(route.params.data));
+              } else {
+                Alert.alert('please log in');
+              }
+            }}
           />
         </View>
         <View style={styles.buttonContainer}>
           <PrimaryButton
             title={wishData.includes(data) ? 'Wishlisted' : 'Wishlist'}
-            onPress={() => dispatch(addItemToWishList(route.params.data))}
+            // onPress={() => dispatch(addItemToWishList(route.params.data))}
+            onPress={() => {
+              if (!cheackUserStatus() === true) {
+                dispatch(addItemToCart(route.params.data));
+              } else {
+                Alert.alert('please log in');
+              }
+            }}
           />
         </View>
       </View>
+      <ModelViewComponet
+        isVisible={true}
+        onBackdropPress={() => setvisible(false)}
+      />
     </ScrollView>
   );
 };
