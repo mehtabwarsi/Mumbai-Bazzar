@@ -12,7 +12,7 @@ import ModelViewComponet from '../../components/modelViewComponet';
 // create a component
 const ProductShow = ({navigation, route}) => {
   // model vislble
-  const [isVisible, setvisible] = useState(true);
+  const [isVisible, setvisible] = useState(false);
   const dispatch = useDispatch();
   const wishData = useSelector(state => state.wishList.data);
   const cartData = useSelector(state => state.cart.data);
@@ -71,7 +71,7 @@ const ProductShow = ({navigation, route}) => {
               if (!cheackUserStatus() === true) {
                 dispatch(addItemToCart(route.params.data));
               } else {
-                Alert.alert('please log in');
+                setvisible(true)
               }
             }}
           />
@@ -84,15 +84,16 @@ const ProductShow = ({navigation, route}) => {
               if (!cheackUserStatus() === true) {
                 dispatch(addItemToCart(route.params.data));
               } else {
-                Alert.alert('please log in');
+                setvisible(true)
               }
             }}
           />
         </View>
       </View>
       <ModelViewComponet
-        isVisible={true}
+        isVisible={isVisible}
         onBackdropPress={() => setvisible(false)}
+        onPress={() => navigation.navigate('signIn')}
       />
     </ScrollView>
   );

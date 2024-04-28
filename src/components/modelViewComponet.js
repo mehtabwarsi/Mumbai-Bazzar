@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
 import PrimaryButton from '../utill/PrimaryButton';
-const ModelViewComponet = ({isVisible, onBackdropPress}) => {
+const ModelViewComponet = ({isVisible, onBackdropPress, onPress}) => {
   return (
     <View>
       <Modal
@@ -13,10 +13,7 @@ const ModelViewComponet = ({isVisible, onBackdropPress}) => {
         <View style={styles.container}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <View style={{marginTop: 50}}>
-              <PrimaryButton title={'Sign In'} />
-            </View>
-            <View style={{marginTop: 20}}>
-              <PrimaryButton title={'Sign Up'} />
+              <PrimaryButton title={'Log In'} onPress={onPress} />
             </View>
           </View>
         </View>
@@ -29,7 +26,7 @@ const ModelViewComponet = ({isVisible, onBackdropPress}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: '30%',
+    height: '20%',
     width: 'auto',
     borderRadius: 10,
   },

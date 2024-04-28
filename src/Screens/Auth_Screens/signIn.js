@@ -1,5 +1,5 @@
 //import liraries
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Color} from '../../utill/color';
 import PrimaryButton from '../../utill/PrimaryButton';
@@ -22,7 +23,20 @@ import {
 
 // create a component
 const SignIn = ({navigation}) => {
-  // const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  // Login function
+  const login = () => {
+    firestore()
+      .collection('Users')
+      // Filter results
+      .where('email', '==', email)
+      .where('password', '==', pass)
+      .get()
+      .then(querySnapshot => {
+        console.log(querySnapshot.docs[0]);
+      });
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.container}>
@@ -47,29 +61,29 @@ const SignIn = ({navigation}) => {
             <View style={styles.TextInput}>
               <Icon name="email" color={Color.primayColor} size={22} />
               <TextInput
-                // style={styles.TextInput}
-                placeholder="Enter your Name"
+                value={email}
+                placeholder="email"
                 placeholderTextColor={'grey'}
                 style={styles.inputTextColor}
+                onChangeText={txt => setEmail(txt)}
               />
             </View>
             <View style={styles.TextInput}>
               <Icon name="lock" color={Color.primayColor} size={22} />
               <TextInput
-                placeholder="Enter your Mobile number"
+                value={pass}
+                placeholder="password"
                 placeholderTextColor={'grey'}
                 keyboardType="numeric"
                 style={styles.inputTextColor}
+                onChangeText={txt => setPass(txt)}
               />
             </View>
           </View>
         </KeyboardAvoidingView>
         {/* primary button */}
         <View style={styles.PrimaryButtonStyle}>
-          <PrimaryButton
-            title={'Log In'}
-            onPress={() => console.log('hello')}
-          />
+          <PrimaryButton title={'Log In'} onPress={() => login()} />
         </View>
         {/* primary button */}
         {/* divider area */}

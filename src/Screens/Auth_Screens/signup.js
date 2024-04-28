@@ -1,5 +1,5 @@
 //import liraries
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import {Color} from '../../utill/color';
@@ -22,7 +23,23 @@ import {
 } from '../../utill/metrices';
 // create a component
 const SignUp = ({navigation}) => {
-  // const navigation = useNavigation();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  // const [name ,setName] = useState('')
+
+  const addUser = () => {
+    firestore()
+      .collection('Users')
+      .add({
+        name: name,
+        email: email,
+        password: pass,
+      })
+      .then(() => {
+        console.log('User added!');
+      });
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.container}>
@@ -38,49 +55,52 @@ const SignUp = ({navigation}) => {
           keyboardVerticalOffset={1000}>
           <View>
             <View style={styles.TextInput}>
-              <Icon name="email" color={Color.primayColor} size={22} />
+              <Icon name="account-circle" color={Color.primayColor} size={22} />
               <TextInput
-                // style={styles.TextInput}
+                value={name}
                 placeholder="Name"
                 placeholderTextColor={'grey'}
                 style={styles.inputTextColor}
+                onChangeText={txt => setName(txt)}
               />
             </View>
             <View style={styles.TextInput}>
               <Icon name="email" color={Color.primayColor} size={22} />
               <TextInput
-                // style={styles.TextInput}
+                value={email}
                 placeholder="email"
                 placeholderTextColor={'grey'}
                 style={styles.inputTextColor}
+                onChangeText={txt => setEmail(txt)}
               />
             </View>
             <View style={styles.TextInput}>
               <Icon name="lock" color={Color.primayColor} size={22} />
               <TextInput
+                value={pass}
                 placeholder="password"
                 placeholderTextColor={'grey'}
                 keyboardType="numeric"
                 style={styles.inputTextColor}
+                onChangeText={txt => setPass(txt)}
               />
             </View>
-            <View style={styles.TextInput}>
+            {/* <View style={styles.TextInput}>
               <Icon name="lock" color={Color.primayColor} size={22} />
               <TextInput
+                value={pass}
                 placeholder=" confirm password"
                 placeholderTextColor={'grey'}
                 keyboardType="numeric"
                 style={styles.inputTextColor}
+                onChangeText={txt => setPass(txt)}
               />
-            </View>
+            </View> */}
           </View>
         </KeyboardAvoidingView>
         {/* primary button */}
         <View style={styles.PrimaryButtonStyle}>
-          <PrimaryButton
-            title={'Sign up'}
-            onPress={() => console.log('hello')}
-          />
+          <PrimaryButton title={'Sign up'} onPress={() => addUser()} />
         </View>
       </View>
       <View style={styles.TextBottm}>
