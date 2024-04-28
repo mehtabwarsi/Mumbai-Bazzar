@@ -1,6 +1,13 @@
 //import liraries
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import ItemShowList from '../../components/itemShow';
 import SearchItemShow from '../../components/searchItemShow';
@@ -23,10 +30,12 @@ const Cart = () => {
     <View style={styles.container}>
       {/* here is applay a one image to add bag */}
       {items.length === 0 ? (
-        <Text style={{color: 'black'}}> items is not here</Text>
-      ) : (
-        <Text style={{color: 'black'}}>items is here</Text>
-      )}
+        <Image
+          source={require('../../Image/emptyCart.png')}
+          resizeMode="contain"
+          style={{height: '100%', width: '100%'}}
+        />
+      ) : null}
       <FlatList
         data={items}
         key={items.id}

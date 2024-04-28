@@ -4,11 +4,14 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {horizontalScale, verticalScale} from '../utill/metrices';
 
 // create a component
-const ItemShowList = ({image, rating, count, title, price, onPress}) => {
+const ItemShowList = ({image, rating, count, title, price, onPress, index}) => {
   let star = String.fromCodePoint(9733);
   let combine = rating + star;
   return (
-    <TouchableOpacity style={styles.rootContainer} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.rootContainer}
+      onPress={onPress}
+      key={index}>
       <View style={styles.container}>
         <View style={styles.imageContainerStyle}>
           <Image

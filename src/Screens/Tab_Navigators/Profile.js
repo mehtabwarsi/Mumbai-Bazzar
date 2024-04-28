@@ -3,10 +3,15 @@ import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import ProfilePage from '../../components/profilePage';
+import SignIn from '../Auth_Screens/signIn';
 // create a component
 const Profile = () => {
   const navigation = useNavigation();
-  return <ProfilePage />;
+  return (
+    <View style={styles.container}>
+      <Button title="sign in" onPress={() => navigation.navigate('signIn')} />
+    </View>
+  );
 };
 
 // define your styles

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useCallback, useEffect} from 'react';
 import {View, Text, StyleSheet, ScrollView, Image, Button} from 'react-native';
 import {horizontalScale, verticalScale} from '../../utill/metrices';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -6,16 +6,18 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addItemToWishList} from '../../Redux/Slices/WishListSlice';
 import {addItemToCart} from '../../Redux/Slices/CartSlice';
 import PrimaryButton from '../../utill/PrimaryButton';
+import {Rating, AirbnbRating} from 'react-native-ratings';
+import {useNavigation} from '@react-navigation/native';
 // create a component
 const ProductShow = ({navigation, route}) => {
   const dispatch = useDispatch();
   const wishData = useSelector(state => state.wishList.data);
   const cartData = useSelector(state => state.cart.data);
-  console.log('from wih' + wishData);
-  // console.log(route.params.data);
   const ImageSrc = route.params.data.image;
   const titleData = route.params.data.title;
   const PriceData = route.params.data.price;
+  const ratingdata = route.params.data.rating.rate;
+  console.log(ratingdata);
   const DescriptionData = route.params.data.description;
   // it use for testing purpose
   const data = route.params.data;
@@ -24,6 +26,8 @@ const ProductShow = ({navigation, route}) => {
   } else {
     console.log('it not have');
   }
+
+
   return (
     <ScrollView style={styles.rootConatiner}>
       <View style={styles.container}>
@@ -39,7 +43,10 @@ const ProductShow = ({navigation, route}) => {
         </View>
         <View style={styles.titleTextStyle}>
           <Text style={styles.titleText}>{titleData}</Text>
+        </View>
+        <View style={styles.ratingWithPrice}>
           <Text style={styles.titleText}>${PriceData}</Text>
+          <AirbnbRating count={ratingdata} size={16} showRating={false} />
         </View>
 
         <View style={styles.descriptionStyle}>
@@ -111,6 +118,11 @@ const styles = StyleSheet.create({
   },
   withlisticon: {
     position: 'absolute',
+  },
+  ratingWithPrice: {
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 

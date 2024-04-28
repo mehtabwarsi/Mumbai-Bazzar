@@ -27,7 +27,7 @@ function App() {
         <StackNaviagtion />
       </NavigationContainer>
     </Provider>
-//  <TestProduct/>
+    // <BadgeIcon/>/
   );
 }
 

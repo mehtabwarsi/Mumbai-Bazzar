@@ -45,6 +45,7 @@ const Home = ({navigation}) => {
         renderItem={({item, index}) => {
           return (
             <ItemShowList
+            index={index}
               image={item.image}
               count={item.rating.count}
               price={item.price}
