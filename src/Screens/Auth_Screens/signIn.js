@@ -95,6 +95,7 @@ const SignIn = ({navigation}) => {
                 placeholder="password"
                 placeholderTextColor={'grey'}
                 keyboardType="numeric"
+                secureTextEntry={true}
                 style={styles.inputTextColor}
                 onChangeText={txt => setPass(txt)}
               />

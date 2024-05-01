@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Provider} from 'react-redux';
 import {store} from './src/Redux/Store/store';
 
@@ -19,8 +19,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import StackNaviagtion from './src/Navigation/Stack_NAviagtion';
 import SearchItemShow from './src/components/searchItemShow';
 import TestProduct from './src/components/textProduct';
+import SplashScreen from 'react-native-splash-screen';
 // screens
 function App() {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -28,6 +32,7 @@ function App() {
       </NavigationContainer>
     </Provider>
     // <BadgeIcon/>/
+    // <SignIn/>
   );
 }
 

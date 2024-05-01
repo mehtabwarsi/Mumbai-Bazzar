@@ -27,7 +27,11 @@ const StackNaviagtion = () => {
         component={TabNaviagtion}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Product-Page" component={ProductShow} />
+      <Stack.Screen
+        name="Product-Page"
+        component={ProductShow}
+
+      />
       <Stack.Screen name="Search-Screen" component={SearchCOmponenet} />
       <Stack.Screen
         name="signIn"

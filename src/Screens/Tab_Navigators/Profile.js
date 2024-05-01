@@ -6,6 +6,7 @@ import auth from '@react-native-firebase/auth';
 import ProfilePage from '../../components/profilePage';
 import SignIn from '../Auth_Screens/signIn';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import PrimaryButton from '../../utill/PrimaryButton';
 // create a component
 const Profile = () => {
   const navigation = useNavigation();
@@ -16,14 +17,14 @@ const Profile = () => {
         .signOut()
         .then(() => console.log('User signed out!'));
       await AsyncStorage.removeItem('my-key');
-      navigation.navigate('signIn')
+      navigation.navigate('signIn');
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <View style={styles.container}>
-      <Button title="Log out" onPress={() => logOut()} />
+      <PrimaryButton title={'Log out'} onPress={()=> logOut()} />
     </View>
   );
 };
